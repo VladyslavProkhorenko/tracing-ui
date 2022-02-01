@@ -6,7 +6,7 @@ import TracingName from "./TracingName";
 import "./../styles/TracingHeader.scss";
 import TracingButton from "./TracingButton";
 
-const TracingHeader = ({ onSelectorToggle, startLoading, stopLoading }) => {
+const TracingHeader = ({ onSelectorToggle, startLoading, stopLoading, onLoadTraceItem }) => {
     return (
         <div className="tracing-header">
             <div className="tracing-header__controls">
@@ -22,9 +22,7 @@ const TracingHeader = ({ onSelectorToggle, startLoading, stopLoading }) => {
                 </TracingButton>
                 <TracingName />
             </div>
-            <TracingFilter startLoading={startLoading}
-                           stopLoading={stopLoading}
-            />
+            <TracingFilter onLoadTraceItem={onLoadTraceItem} />
             <div className="tracing-header__buttons">
                 <TracingRefreshButton startLoading={startLoading}
                                       stopLoading={stopLoading}

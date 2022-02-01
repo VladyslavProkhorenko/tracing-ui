@@ -1,0 +1,19 @@
+.tracing-step {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    padding: 8px 16px;
+    border-radius: 3px;
+    background-color: #eaeaea;
+    cursor: pointer;
+    transition:
+            color .3s ease-in-out,
+            background-color .3s ease-in-out;
+    
+    &.active,
+    &:hover {
+        color: #fff;
+        background-color: rgba(22, 93, 255, 0.8);
+    }
+}

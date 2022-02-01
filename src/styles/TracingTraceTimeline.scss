@@ -1,0 +1,25 @@
+.trace-timeline {
+    .trace-timeline__item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+
+        .trace-timeline__item__dots {
+            position: relative;
+            display: flex;
+            flex-grow: 1;
+            margin-left: 10px;
+            margin-right: 10px;
+            
+            &:before {
+                content: '';
+                position: absolute;
+                bottom: .55rem;
+                width: 100%;
+                height: 0;
+                line-height: 0;
+                border-bottom: 2px dotted #ddd;
+            }   
+        }
+    }
+}
