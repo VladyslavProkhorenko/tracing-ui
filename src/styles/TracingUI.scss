@@ -1,0 +1,33 @@
+.tracing-ui {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    position: relative;
+    background-color: #F7F8FA;
+
+    .backdrop {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 2;
+        background-color: rgba(0,0,0,.6);
+        transition:
+                visibility .5s ease-in-out,
+                opacity .5s ease-in-out;
+    }
+    
+    &.selector-visible {
+        .backdrop {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+    
+    &, * {
+        box-sizing: border-box;
+    }
+}

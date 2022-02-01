@@ -1,0 +1,31 @@
+.tracing-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 3px;
+    background-color: #F2F3F5;
+    color: #4E5969;
+    cursor: pointer;
+    transition:
+            color .5s ease-in-out,
+            background-color .5s ease-in-out;
+    
+    svg {
+        &, * {
+            transition: filter .5s ease-in-out;
+        }
+    }
+    
+    &:hover {
+        background-color: #165DFF;
+        color: #fff;
+        
+        svg {
+            &, * {
+                filter: brightness(5);
+            }
+        }
+    }
+}

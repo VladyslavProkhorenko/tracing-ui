@@ -1,0 +1,26 @@
+.tracing-name {
+    display: flex;
+    align-items: center;
+    
+    .tracing-name__input,
+    .tracing-name__title {
+        display: flex;
+        align-items: center;
+        width: 200px;
+        min-height: 35px;
+        margin-right: 10px;
+    }
+    
+    .tracing-name__input {
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        background-color: #F2F3F5;
+        padding: 8px 16px;
+    }
+
+    .tracing-name__title {
+        font-size: 20px;
+        font-weight: bold;
+    }
+}

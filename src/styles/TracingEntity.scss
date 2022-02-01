@@ -1,0 +1,15 @@
+.tracing-entity {
+    padding: 18px 0;
+    color: #4E5969;
+    border-bottom: 1px solid #E5E6E8;
+    cursor: pointer;
+    transition:
+            color .5s ease-in-out,
+            border-bottom-color .5s ease-in-out;
+    
+    &.active,
+    &:hover {
+        color: #165DFF;
+        border-bottom-color: #165DFF;
+    }
+}

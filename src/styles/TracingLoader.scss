@@ -1,0 +1,49 @@
+.tracing-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    visibility: hidden;
+    opacity: 0;
+    transition:
+        opacity .5s ease-in-out,
+        visibility .5s ease-in-out;
+    
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
+    
+    .tracing-loader__text,
+    .tracing-loader__dot {
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .tracing-loader__dot {
+        animation: fading 2s infinite;
+        
+        &:nth-child(2) {
+            animation-delay: 1.3s;
+        }
+
+        &:nth-child(3) {
+            animation-delay: 1.6s;
+        }
+    }
+}
+
+@keyframes fading {
+    0% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 0;
+    }
+    
+    100% {
+        opacity: 1;
+    }
+}
