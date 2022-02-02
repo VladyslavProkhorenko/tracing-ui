@@ -9,11 +9,18 @@ const TracingStepDetails = ({ activeStep }) => {
     return (
         <div className="tracing-step-details">
             {
-                activeStep && Object.keys(activeStep).length
+                activeStep
                     ?
-                <pre>
-                    {JSON.stringify(activeStep,null,2)}
-                </pre>
+                    <>
+                        {
+                            activeStep.data && Object.keys(activeStep.data).length ?
+                                <pre>
+                                    {JSON.stringify(activeStep.data,null,2)}
+                                </pre>
+                            :
+                                <div className="tracing-step-details__empty">No data</div>
+                        }
+                    </>
                     :
                 <div className="tracing-step-details__empty">Select step</div>
             }

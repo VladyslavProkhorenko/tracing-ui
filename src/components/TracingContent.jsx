@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import TracingTree from "./TracingTree";
 import TracingDetails from "./TracingDetails";
 import "./../styles/TracingContent.scss";
@@ -6,6 +6,10 @@ import TracingLoader from "./TracingLoader";
 
 const TracingContent = ({ loading, traceItem }) => {
     const [ activeStep, setActiveStep ] = useState();
+
+    useEffect(() => {
+        setActiveStep(null);
+    }, [ traceItem ])
     
     return (
         <div className="tracing-content">
