@@ -9,7 +9,7 @@ const TracingTraceTimeline = ({ steps }) => {
                     <div className="trace-timeline__item"
                          key={step.id}
                     >
-                        <div className="trace-timeline__item__label">{ step.label }</div>
+                        <div className="trace-timeline__item__name">{ step.name }</div>
                         <div className="trace-timeline__item__dots" />
                         <div className="trace-timeline__item__time">{ step.datetime }</div>
                     </div>

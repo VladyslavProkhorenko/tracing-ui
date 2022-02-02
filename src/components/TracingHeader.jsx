@@ -1,12 +1,10 @@
 import React from 'react';
-import TracingFilter from "./TracingFilter";
 import TracingRefreshButton from "./TracingRefreshButton";
-import TracingImport from "./TracingImport";
 import TracingName from "./TracingName";
 import "./../styles/TracingHeader.scss";
 import TracingButton from "./TracingButton";
 
-const TracingHeader = ({ onSelectorToggle, startLoading, stopLoading, onLoadTraceItem }) => {
+const TracingHeader = ({ activeEntity, setActiveEntity, onSelectorToggle, onRefresh, onServerChange }) => {
     return (
         <div className="tracing-header">
             <div className="tracing-header__controls">
@@ -20,14 +18,13 @@ const TracingHeader = ({ onSelectorToggle, startLoading, stopLoading, onLoadTrac
                         <path d="M4.8825 9H4.875V9.0075H4.8825V9Z" stroke="#4E5969" strokeWidth="1.5"/>
                     </svg>
                 </TracingButton>
-                <TracingName />
+                {activeEntity && <TracingName activeEntity={activeEntity}
+                             setActiveEntity={setActiveEntity}
+                />}
             </div>
-            <TracingFilter onLoadTraceItem={onLoadTraceItem} />
             <div className="tracing-header__buttons">
-                <TracingRefreshButton startLoading={startLoading}
-                                      stopLoading={stopLoading}
-                />
-                <TracingImport />
+                <TracingRefreshButton onRefresh={onRefresh} />
+                <TracingButton onClick={onServerChange}>Change server</TracingButton>
             </div>            
         </div>
     );

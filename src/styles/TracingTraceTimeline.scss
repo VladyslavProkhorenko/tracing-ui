@@ -1,4 +1,6 @@
 .trace-timeline {
+    flex-grow: 1;
+
     .trace-timeline__item {
         display: flex;
         justify-content: space-between;

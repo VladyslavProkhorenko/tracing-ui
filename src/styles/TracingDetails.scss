@@ -1,4 +1,6 @@
 .tracing-details {
+    display: flex;
+    flex-direction: column;
     flex-basis: 70%;
     padding: 30px;
     
@@ -7,6 +9,8 @@
     }
     
     .tracing-tabs-content {
+        display: flex;
+        flex-grow: 1;
         padding: 15px;
     }
 }

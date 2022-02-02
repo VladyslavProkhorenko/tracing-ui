@@ -4,4 +4,13 @@
     height: calc(100% - 65px);
     z-index: 0;
     justify-content: space-between;
+
+    .tracing-content__empty-trace-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        font-size: 24px;
+        font-weight: bold;
+    }
 }

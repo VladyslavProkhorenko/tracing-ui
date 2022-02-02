@@ -6,13 +6,13 @@ import TracingStepConnector from "./TracingStepConnector";
 const TracingTree = ({ traceItem, activeStep, setActiveStep }) => {    
     return (
         <div className="tracing-tree">
-            <div className="tracing-tree__header">Tracing tree for #{traceItem.id}</div>
+            <div className="tracing-tree__header">Tracing for {traceItem.name}</div>
             <div className="tracing-tree__steps">
                 {
                     traceItem.steps.map(
                         (step, index) => <div key={step.id}>
                             <TracingStep step={step}
-                                         active={activeStep.id === step.id}
+                                         active={activeStep && activeStep.id === step.id}
                                          onSelect={setActiveStep}/>
                             { index !== traceItem.steps.length - 1 && <TracingStepConnector/> }
                         </div>

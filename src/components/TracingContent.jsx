@@ -5,20 +5,30 @@ import "./../styles/TracingContent.scss";
 import TracingLoader from "./TracingLoader";
 
 const TracingContent = ({ loading, traceItem }) => {
-    const [ activeStep, setActiveStep ] = useState('rep_requests_lead');
+    const [ activeStep, setActiveStep ] = useState();
     
     return (
         <div className="tracing-content">
             <TracingLoader active={loading} />
             {
                 !loading && <>
-                <TracingTree traceItem={traceItem}
-                             activeStep={activeStep}
-                             setActiveStep={setActiveStep}
-                />
-                <TracingDetails steps={traceItem.steps}
-                                activeStep={activeStep}
-                />
+                    {
+                        traceItem && <>
+                        <TracingTree traceItem={traceItem}
+                                     activeStep={activeStep}
+                                     setActiveStep={setActiveStep}
+                        />
+                        <TracingDetails steps={traceItem.steps}
+                                        activeStep={activeStep}
+                        />
+                        </>
+                    }
+                    {
+                        !traceItem &&
+                        <div className="tracing-content__empty-trace-item">
+                            Select trace item...
+                        </div>
+                    }
                 </>
             }
         </div>

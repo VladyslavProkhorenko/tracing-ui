@@ -1,53 +1,92 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import TracingEntity from "./TracingEntity";
 import "./../styles/TracingSelector.scss"
+import TracingButton from "./TracingButton";
+import TracingSearchItems from "./TracingSearchItems";
 
-const TracingSelector = ({ status, onHide, startLoading, stopLoading }) => {
-    const entities = [
-        {
-            id: 1,
-            name: "Leads tracing entity"
-        },
-        {
-            id: 2,
-            name: "Calls tracing entity"
-        },
-        {
-            id: 3,
-            name: "Companies tracing entity"
-        },
-        {
-            id: 4,
-            name: "Reps tracing entity"
-        },
-        {
-            id: 5,
-            name: "Users tracing entity"
-        },
-    ];
-    
-    const [ activeEntity, setActiveEntity ] = useState(1);
-    const onEntitySelect = (id) => {
-        setActiveEntity(id);
-        onHide();
-        startLoading();
-        setTimeout(() => {
-            stopLoading()
-        }, 3000);
+const TracingSelector = ({
+                             status, onHide,
+                             activeEntity, setActiveEntity,
+                             activeItem, setActiveItem,
+                             entities
+                         }) => {
+
+    const [ selectedEntity, setSelectedEntity ] = useState(activeEntity);
+    const [ selectingEntityItem, setSelectingEntityItem ] = useState(false);
+    const [ items, setItems ] = useState([]);
+
+    const onEntitySelect = (entity) => {
+        setSelectedEntity(entity)
+        setSelectingEntityItem(true);
     }
+
+    const onItemSelect = (item) => {
+        setActiveEntity(selectedEntity);
+        setActiveItem(item, selectedEntity);
+        onHide();
+    }
+
+    const resetItems = () => {
+        setItems(selectedEntity.items);
+    }
+
+    useEffect(() => {
+        setSelectedEntity(activeEntity);
+        setSelectingEntityItem(false);
+    }, [ activeEntity ])
+
+    useEffect(() => {
+        if (selectedEntity && selectedEntity.items) {
+            setItems(selectedEntity.items);
+        }
+    }, [ selectedEntity ]);
     
     
     return (
         <div className={`tracing-selector ${status ? "opened" : ""}`}>
-            <div className="tracing-selector__header">Traces</div>
-            { entities.map(
-                entity => <TracingEntity id={entity.id}
+            <div className="tracing-selector__header">
+                <div className="tracing-selector__header__name">
+                    {selectingEntityItem && selectedEntity ? selectedEntity.name : "Traces"}
+                </div>
+                {
+                    selectingEntityItem &&
+                    <TracingButton onClick={() => setSelectingEntityItem(false)}>Back</TracingButton>
+                }
+            </div>
+            { !selectingEntityItem && entities.map(
+                entity => <TracingEntity entity={entity}
                                          key={entity.id}
-                                         name={entity.name}
-                                         active={entity.id === activeEntity}
+                                         active={activeEntity && entity.id === activeEntity.id}
                                          onSelect={onEntitySelect}
                 />  
             ) }
+            {
+                selectingEntityItem && selectedEntity && Array.isArray(items) &&
+                <>
+                    <TracingSearchItems entityId={selectedEntity.id}
+                                        onSearch={setItems}
+                                        onReset={resetItems}
+                    />
+                    {
+                        items.map(
+                            item => <TracingEntity entity={item}
+                                                   key={item.id}
+                                                   active={activeItem && item.id === activeItem.id}
+                                                   onSelect={onItemSelect}
+                            />
+                        )
+                    }
+                </>
+            }
+            {
+                (!entities || !entities.length || (
+                    selectingEntityItem && selectedEntity && (
+                        !items || !items.length
+                    )
+                )) && <div className="tracing-selector__empty-list">
+                No items in this entity...
+                </div>
+            }
         </div>
     );
 };
