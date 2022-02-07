@@ -6,8 +6,6 @@ import TracingSelector from "./TracingSelector";
 import TracingUIService from "../services/TracingUI.service";
 import TracingAuth from "./TracingAuth";
 
-const STORAGE_KEY = "tracingUIToken";
-
 const TracingUI = () => {
     const [ server, setServer ] = useState(null)
     const [ entities, setEntities ] = useState([]);
@@ -76,6 +74,7 @@ const TracingUI = () => {
                 <>
                     <TracingHeader onSelectorToggle={toggleSelector}
                                    activeEntity={activeEntity}
+                                   server={server}
                                    setActiveEntity={setActiveEntity}
                                    onRefresh={refresh}
                                    onServerChange={changeServer}

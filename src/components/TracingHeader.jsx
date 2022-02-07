@@ -4,7 +4,7 @@ import TracingName from "./TracingName";
 import "./../styles/TracingHeader.scss";
 import TracingButton from "./TracingButton";
 
-const TracingHeader = ({ activeEntity, setActiveEntity, onSelectorToggle, onRefresh, onServerChange }) => {
+const TracingHeader = ({ server, activeEntity, setActiveEntity, onSelectorToggle, onRefresh, onServerChange }) => {
     return (
         <div className="tracing-header">
             <div className="tracing-header__controls">
@@ -22,6 +22,7 @@ const TracingHeader = ({ activeEntity, setActiveEntity, onSelectorToggle, onRefr
                              setActiveEntity={setActiveEntity}
                 />}
             </div>
+            <div>Server: <span className="tracing__server">{ server.replace(/[\/]+/, "") }</span></div>
             <div className="tracing-header__buttons">
                 <TracingRefreshButton onRefresh={onRefresh} />
                 <TracingButton onClick={onServerChange}>Change server</TracingButton>
