@@ -3,6 +3,7 @@ import TracingEntity from "./TracingEntity";
 import "./../styles/TracingSelector.scss"
 import TracingButton from "./TracingButton";
 import TracingSearchItems from "./TracingSearchItems";
+import TracingPagination from "./TracingPagination";
 
 const TracingSelector = ({
                              status, onHide,
@@ -14,6 +15,8 @@ const TracingSelector = ({
     const [ selectedEntity, setSelectedEntity ] = useState(activeEntity);
     const [ selectingEntityItem, setSelectingEntityItem ] = useState(false);
     const [ items, setItems ] = useState([]);
+    const [ itemsPagesCount, setItemsPagesCount ] = useState(23);
+    const [ itemsCurrentPage, setItemsCurrentPage ] = useState(22);
 
     const onEntitySelect = (entity) => {
         setSelectedEntity(entity)
@@ -28,6 +31,10 @@ const TracingSelector = ({
 
     const resetItems = () => {
         setItems(selectedEntity.items);
+    }
+
+    const onPageChange = (page) => {
+        setItemsCurrentPage(page);
     }
 
     useEffect(() => {
@@ -67,6 +74,7 @@ const TracingSelector = ({
                                         onSearch={setItems}
                                         onReset={resetItems}
                     />
+                    <div className="tracing-items__wrapper">
                     {
                         items.map(
                             item => <TracingEntity entity={item}
@@ -76,6 +84,11 @@ const TracingSelector = ({
                             />
                         )
                     }
+                    </div>
+                    <TracingPagination pagesCount={itemsPagesCount}
+                                       currentPage={itemsCurrentPage}
+                                       onPageChange={onPageChange}
+                    />
                 </>
             }
             {
