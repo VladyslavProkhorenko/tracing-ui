@@ -63,6 +63,12 @@ const TracingUI = () => {
         updateServer(null);
     }
 
+    useEffect( async() => {
+        if (await TracingUIService.auth(window.location.host)) {
+            updateServer(TracingUIService.server);
+        }
+    }, []);
+
     useEffect( async () => {
         await refresh();
     }, [ server ]);

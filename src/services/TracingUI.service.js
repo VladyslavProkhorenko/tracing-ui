@@ -7,7 +7,7 @@ const TracingUIService = {
         server = this.parseServer(server);
 
         return await axios
-            .get(`${server}/tracing-ui/ping`)
+            .get(`${server}/tracing/ping`)
             .then( () => {
                 this.server = server
                 return true;
@@ -25,19 +25,19 @@ const TracingUIService = {
 
     async loadEntities() {
         return await axios
-            .get(`${this.server}/tracing-ui/entities`)
+            .get(`${this.server}/tracing/entities`)
             .then(({ data }) => data)
     },
 
     async loadItemDetails(id) {
         return await axios
-            .get(`${TracingUIService.server}/tracing-ui/item/${id}`)
+            .get(`${TracingUIService.server}/tracing/item/${id}`)
             .then(({ data }) => data)
     },
 
     async searchItems(query, entityId) {
         return await axios
-            .get(`${this.server}/tracing-ui/entity/${entityId}/item?query=${query}`)
+            .get(`${this.server}/tracing/entity/${entityId}/item?query=${query}`)
             .then(({ data }) => data)
     }
 }
