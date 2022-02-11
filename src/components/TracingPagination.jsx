@@ -24,8 +24,6 @@ const TracingPagination = ({ pagesCount, currentPage, onPageChange }) => {
             }
 
             pagesArr = pagesArr.slice(firstItemIndex, lastItemIndex);
-
-            console.log(pagesArr, firstItemIndex, lastItemIndex, currentPage, pagesCount);
         }
         setPages(pagesArr);
     }, [ pagesCount, currentPage ])
