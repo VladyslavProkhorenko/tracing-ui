@@ -2,10 +2,6 @@ import React, { useEffect } from 'react';
 import "./../styles/TracingStepDetails.scss";
 
 const TracingStepDetails = ({ activeStep }) => {
-    useEffect(() => {
-        console.log('activeStep', activeStep);
-    }, [ activeStep ]);
-
     return (
         <div className="tracing-step-details">
             {

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import TracingUIService from "../services/TracingUI.service";
 import "./../styles/TracingSearchItems.scss";
 
-const TracingSearchItems = ({ entityId, onReset, onSearch }) => {
-    const [ query, setQuery ] = useState('');
+const TracingSearchItems = ({ onReset, onSearch, defaultQuery }) => {
+    const [ query, setQuery ] = useState(defaultQuery);
     const [ searchTimeout, setSearchTimeout ] = useState(null);
 
     const onInput = (e) => {
@@ -11,6 +10,9 @@ const TracingSearchItems = ({ entityId, onReset, onSearch }) => {
         if (searchTimeout) {
             clearTimeout(searchTimeout);
         }
+        setSearchTimeout(
+            setTimeout(() => search(e.target.value), 500)
+        );
     }
 
     const search = async (query) => {
@@ -19,15 +21,8 @@ const TracingSearchItems = ({ entityId, onReset, onSearch }) => {
             return;
         }
 
-        const items = await TracingUIService.searchItems(query, entityId);
-        onSearch(items);
+        onSearch(query);
     }
-
-    useEffect(() => {
-        setSearchTimeout(
-            setTimeout(() => search(query), 500)
-        );
-    }, [ query ])
 
     return (
         <div className="tracing-search-items">

@@ -5,7 +5,7 @@
     left: 0;
     display: flex;
     flex-direction: column;
-    width: 320px;
+    width: 420px;
     padding: 15px 20px;
     background-color: #fff;
     z-index: 3;
@@ -33,5 +33,9 @@
         justify-content: center;
         align-items: center;
         flex-grow: 1;
+    }
+
+    .tracing-items__wrapper {
+        overflow-y: auto;
     }
 }
