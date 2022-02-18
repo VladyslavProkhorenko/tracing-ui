@@ -11,7 +11,7 @@ const TracingUI = () => {
     const [ entities, setEntities ] = useState([]);
     const [ activeEntity, setActiveEntity ] = useState();
     const [ activeItem, setActiveItem ] = useState();
-    const [ selectorVisible, setSelectorVisibility ] = useState(false);
+    const [ selectorVisible, setSelectorVisibility ] = useState(true);
     const [ loading, setLoading ] = useState(false);
     const [ traceItem, setTraceItem ] = useState(null);
 
