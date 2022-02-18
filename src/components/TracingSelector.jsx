@@ -6,6 +6,7 @@ import TracingSearchItems from "./TracingSearchItems";
 import TracingPagination from "./TracingPagination";
 import TracingUIService from "../services/TracingUI.service";
 import TracingQueryService from "../services/TracingQuery.service";
+import TracingItemsFilter from "./TracingItemsFilter";
 
 const TracingSelector = ({
                              status, onHide,
@@ -95,6 +96,7 @@ const TracingSelector = ({
                                         onSearch={onSearch}
                                         onReset={resetItems}
                     />
+                    <TracingItemsFilter />
                     {
                         Array.isArray(items) && items.length > 0 && <>
                             <div className="tracing-items__wrapper">

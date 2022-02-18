@@ -1,0 +1,19 @@
+.tracing-items-filter {
+    display: flex;
+    margin-top: 10px;
+
+    .tracing-steps-list {
+        width: 70%;
+        margin-left: 10px;
+    }
+
+    .tracing-items__types {
+        flex-grow: 1;
+    }
+
+    &.exclude {
+        .tracing-step-item.active {
+            text-decoration: line-through;
+        }
+    }
+}
