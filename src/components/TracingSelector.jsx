@@ -5,6 +5,7 @@ import TracingButton from "./TracingButton";
 import TracingSearchItems from "./TracingSearchItems";
 import TracingPagination from "./TracingPagination";
 import TracingUIService from "../services/TracingUI.service";
+import TracingQueryService from "../services/TracingQuery.service";
 
 const TracingSelector = ({
                              status, onHide,
@@ -26,6 +27,8 @@ const TracingSelector = ({
     }
 
     const onItemSelect = (item) => {
+        TracingQueryService.set('entity', selectedEntity.id);
+        TracingQueryService.set('id', item.id);
         setActiveEntity(selectedEntity);
         setActiveItem(item, selectedEntity);
         onHide();
