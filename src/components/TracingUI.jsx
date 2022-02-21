@@ -5,6 +5,7 @@ import "./../styles/TracingUI.scss";
 import TracingSelector from "./TracingSelector";
 import TracingUIService from "../services/TracingUI.service";
 import TracingAuth from "./TracingAuth";
+import TracingQueryService from "../services/TracingQuery.service";
 
 const TracingUI = () => {
     const [ server, setServer ] = useState(null)
@@ -63,9 +64,41 @@ const TracingUI = () => {
         updateServer(null);
     }
 
+    const fetchDataFromQuery = async () => {
+        console.log('fetch data from query');
+        await fetchEntityFromQuery();
+        await fetchItemFromQuery();
+    }
+
+    const fetchEntityFromQuery = async () => {
+        const entityId = TracingQueryService.get('entity');
+        if (!entityId || !Number(entityId)) return;
+
+        const entity = await TracingUIService.loadEntityDetails(entityId);
+        if (!entity) return;
+
+        setActiveEntity(entity);
+
+        return entity;
+    }
+
+    const fetchItemFromQuery = async () => {
+        const itemId = TracingQueryService.get('id');
+        if (!itemId || !Number(itemId)) return;
+
+        const item = await TracingUIService.loadItemDetails(itemId);
+        if (!item) return;
+
+        setActiveItem(item);
+        setTraceItem(item);
+
+        return item;
+    }
+
     useEffect( async() => {
         if (await TracingUIService.auth(window.location.host)) {
             updateServer(TracingUIService.server);
+            await fetchDataFromQuery();
         }
     }, []);
 
@@ -81,7 +114,6 @@ const TracingUI = () => {
                     <TracingHeader onSelectorToggle={toggleSelector}
                                    activeEntity={activeEntity}
                                    server={server}
-                                   setActiveEntity={setActiveEntity}
                                    onRefresh={refresh}
                                    onServerChange={changeServer}
                     />
