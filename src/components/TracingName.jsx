@@ -1,7 +1,7 @@
 import React from 'react';
 import "./../styles/TracingName.scss";
 
-const TracingName = ({ activeEntity, setActiveEntity }) => {
+const TracingName = ({ activeEntity }) => {
     
     return (
         <div className="tracing-name">

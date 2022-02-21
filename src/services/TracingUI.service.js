@@ -29,6 +29,12 @@ const TracingUIService = {
             .then(({ data }) => data)
     },
 
+    async loadEntityDetails(key) {
+        return await axios
+            .get(`${TracingUIService.server}/tracing/entity/${key}`)
+            .then(({ data }) => data)
+    },
+
     async loadItemsForEntity(id, page = 1, query = null) {
         return await axios
             .get(`${this.server}/tracing/entity/${id}/item?page=${page}${query !== null ? `&query=${query}` : ''}`)
