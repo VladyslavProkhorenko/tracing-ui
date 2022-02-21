@@ -4,7 +4,7 @@ import TracingName from "./TracingName";
 import "./../styles/TracingHeader.scss";
 import TracingButton from "./TracingButton";
 
-const TracingHeader = ({ server, activeEntity, setActiveEntity, onSelectorToggle, onRefresh, onServerChange }) => {
+const TracingHeader = ({ server, activeEntity, onSelectorToggle, onRefresh, onServerChange }) => {
     return (
         <div className="tracing-header">
             <div className="tracing-header__controls">
@@ -18,9 +18,7 @@ const TracingHeader = ({ server, activeEntity, setActiveEntity, onSelectorToggle
                         <path d="M4.8825 9H4.875V9.0075H4.8825V9Z" stroke="#4E5969" strokeWidth="1.5"/>
                     </svg>
                 </TracingButton>
-                {activeEntity && <TracingName activeEntity={activeEntity}
-                             setActiveEntity={setActiveEntity}
-                />}
+                {activeEntity && <TracingName activeEntity={activeEntity}/>}
             </div>
             <div>Server: <span className="tracing__server">{ server.replace(/[\/]+/, "") }</span></div>
             <div className="tracing-header__buttons">
