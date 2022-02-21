@@ -27,7 +27,7 @@ const TracingSelector = ({
     }
 
     const onItemSelect = (item) => {
-        TracingQueryService.set('entity', selectedEntity.id);
+        TracingQueryService.set('entity', selectedEntity.key);
         TracingQueryService.set('id', item.id);
         setActiveEntity(selectedEntity);
         setActiveItem(item, selectedEntity);

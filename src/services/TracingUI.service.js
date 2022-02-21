@@ -29,9 +29,9 @@ const TracingUIService = {
             .then(({ data }) => data)
     },
 
-    async loadEntityDetails(id) {
+    async loadEntityDetails(key) {
         return await axios
-            .get(`${TracingUIService.server}/tracing/entity/${id}`)
+            .get(`${TracingUIService.server}/tracing/entity/${key}`)
             .then(({ data }) => data)
     },
 

@@ -66,16 +66,18 @@ const TracingUI = () => {
 
     const fetchDataFromQuery = async () => {
         console.log('fetch data from query');
-        await fetchEntityFromQuery();
-        await fetchItemFromQuery();
+
+        if (await fetchEntityFromQuery()) {
+            await fetchItemFromQuery();
+        }
     }
 
     const fetchEntityFromQuery = async () => {
-        const entityId = TracingQueryService.get('entity');
-        if (!entityId || !Number(entityId)) return;
+        const entityKey = TracingQueryService.get('entity');
+        if (!entityKey) return false;
 
-        const entity = await TracingUIService.loadEntityDetails(entityId);
-        if (!entity) return;
+        const entity = await TracingUIService.loadEntityDetails(entityKey);
+        if (!entity) return false;
 
         setActiveEntity(entity);
 
@@ -84,10 +86,10 @@ const TracingUI = () => {
 
     const fetchItemFromQuery = async () => {
         const itemId = TracingQueryService.get('id');
-        if (!itemId || !Number(itemId)) return;
+        if (!itemId || !Number(itemId)) return false;
 
         const item = await TracingUIService.loadItemDetails(itemId);
-        if (!item) return;
+        if (!item) return false;
 
         setActiveItem(item);
         setTraceItem(item);
