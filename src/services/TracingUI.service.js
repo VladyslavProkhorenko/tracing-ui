@@ -31,19 +31,34 @@ const TracingUIService = {
 
     async loadEntityDetails(key) {
         return await axios
-            .get(`${TracingUIService.server}/tracing/entity/${key}`)
+            .get(`${this.server}/tracing/entity/${key}`)
             .then(({ data }) => data)
     },
 
-    async loadItemsForEntity(id, page = 1, query = null) {
+    async loadItemsForEntity(id, page = 1, query = null, filterType = null, filterSteps = null) {
+        const params = {
+            page,
+            query: query && query.length ? query : null,
+            filterType,
+            filterSteps: filterSteps && filterSteps.length ? filterSteps.join(',') : null
+        }
+
         return await axios
-            .get(`${this.server}/tracing/entity/${id}/item?page=${page}${query !== null ? `&query=${query}` : ''}`)
+            .get(`${this.server}/tracing/entity/${id}/item`, {
+                params
+            })
+            .then(({ data }) => data)
+    },
+
+    async loadStepsForEntity(id) {
+        return await axios
+            .get(`${this.server}/tracing/entity/${id}/step`)
             .then(({ data }) => data)
     },
 
     async loadItemDetails(id) {
         return await axios
-            .get(`${TracingUIService.server}/tracing/item/${id}`)
+            .get(`${this.server}/tracing/item/${id}`)
             .then(({ data }) => data)
     }
 }

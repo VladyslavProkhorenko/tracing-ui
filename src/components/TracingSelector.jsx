@@ -12,7 +12,7 @@ const TracingSelector = ({
                              status, onHide,
                              activeEntity, setActiveEntity,
                              activeItem, setActiveItem,
-                             entities
+                             entities, entitySteps
                          }) => {
 
     const [ selectedEntity, setSelectedEntity ] = useState(activeEntity);
@@ -21,6 +21,8 @@ const TracingSelector = ({
     const [ itemsQuery, setItemsQuery ] = useState('');
     const [ itemsPagesCount, setItemsPagesCount ] = useState(1);
     const [ itemsCurrentPage, setItemsCurrentPage ] = useState(1);
+    const [ filterType, setFilterType ] = useState('all');
+    const [ filterSteps, setFilterSteps ] = useState([]);
 
     const onEntitySelect = (entity) => {
         setSelectedEntity(entity)
@@ -38,27 +40,38 @@ const TracingSelector = ({
     const resetItems = async () => {
         setItemsQuery('');
         setItemsCurrentPage(1);
-        await loadItemsForEntity(1, '');
+        await loadItemsForEntity(1, '', filterType, filterSteps);
     }
 
     const onPageChange = async (page) => {
         setItemsCurrentPage(page);
-        await loadItemsForEntity(page, itemsQuery);
+        await loadItemsForEntity(page, itemsQuery, filterType, filterSteps);
     }
 
     const onSearch = async (query) => {
         setItemsQuery(query);
         setItemsCurrentPage(1);
-        await loadItemsForEntity(1, query);
+        await loadItemsForEntity(1, query, filterType, filterSteps);
     }
 
-    const loadItemsForEntity = async (page, query) => {
+    const loadItemsForEntity = async (page, query, filterType, filterSteps) => {
         if (!selectedEntity) return;
 
-        const data = await TracingUIService.loadItemsForEntity(selectedEntity.id, page, query);
+        const data = await TracingUIService.loadItemsForEntity(selectedEntity.id, page, query, filterType, filterSteps);
         selectedEntity.items = data.items;
         setItems(data.items);
         setItemsPagesCount(data.lastPage);
+    }
+
+    const filterItems = async (type, steps) => {
+        if (type === 'all') {
+            steps = [];
+        }
+
+        setFilterType(type);
+        setFilterSteps(steps);
+        setItemsCurrentPage(1);
+        await loadItemsForEntity(1, itemsQuery, type, steps);
     }
 
     useEffect(() => {
@@ -67,7 +80,9 @@ const TracingSelector = ({
     }, [ activeEntity ])
 
     useEffect(async () => {
-        await loadItemsForEntity(itemsCurrentPage, itemsQuery);
+        setFilterType('all');
+        setFilterSteps([]);
+        await loadItemsForEntity(itemsCurrentPage, itemsQuery, 'all', []);
     }, [ selectedEntity ]);
     
     
@@ -96,7 +111,9 @@ const TracingSelector = ({
                                         onSearch={onSearch}
                                         onReset={resetItems}
                     />
-                    <TracingItemsFilter />
+                    <TracingItemsFilter entitySteps={entitySteps}
+                                        onFilter={filterItems}
+                    />
                     {
                         Array.isArray(items) && items.length > 0 && <>
                             <div className="tracing-items__wrapper">
