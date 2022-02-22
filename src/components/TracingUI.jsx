@@ -10,7 +10,6 @@ import TracingQueryService from "../services/TracingQuery.service";
 const TracingUI = () => {
     const [ server, setServer ] = useState(null)
     const [ entities, setEntities ] = useState([]);
-    const [ entitySteps, setEntitySteps ] = useState([]);
     const [ activeEntity, setActiveEntity ] = useState();
     const [ activeItem, setActiveItem ] = useState();
     const [ selectorVisible, setSelectorVisibility ] = useState(true);
@@ -108,14 +107,6 @@ const TracingUI = () => {
     useEffect( async () => {
         await refresh();
     }, [ server ]);
-
-    useEffect( async () => {
-        const steps = activeEntity
-            ? await TracingUIService.loadStepsForEntity(activeEntity.id)
-            : [];
-
-        setEntitySteps(steps);
-    }, [ activeEntity ]);
     
     return (
         <div className={`tracing-ui ${selectorVisible ? "selector-visible" : ""}`}>
@@ -131,7 +122,6 @@ const TracingUI = () => {
                     <TracingSelector status={selectorVisible}
                                      onHide={hideSelector}
                                      activeEntity={activeEntity}
-                                     entitySteps={entitySteps}
                                      setActiveEntity={setActiveEntity}
                                      activeItem={activeItem}
                                      setActiveItem={loadActiveItem}

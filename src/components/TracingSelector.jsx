@@ -12,11 +12,12 @@ const TracingSelector = ({
                              status, onHide,
                              activeEntity, setActiveEntity,
                              activeItem, setActiveItem,
-                             entities, entitySteps
+                             entities
                          }) => {
 
     const [ selectedEntity, setSelectedEntity ] = useState(activeEntity);
     const [ selectingEntityItem, setSelectingEntityItem ] = useState(false);
+    const [ entitySteps, setEntitySteps ] = useState([]);
     const [ items, setItems ] = useState([]);
     const [ itemsQuery, setItemsQuery ] = useState('');
     const [ itemsPagesCount, setItemsPagesCount ] = useState(1);
@@ -63,6 +64,14 @@ const TracingSelector = ({
         setItemsPagesCount(data.lastPage);
     }
 
+    const loadStepsForEntity = async () => {
+        const steps = selectedEntity
+            ? await TracingUIService.loadStepsForEntity(selectedEntity.id)
+            : [];
+
+        setEntitySteps(steps);
+    }
+
     const filterItems = async (type, steps) => {
         if (type === 'all') {
             steps = [];
@@ -83,8 +92,8 @@ const TracingSelector = ({
         setFilterType('all');
         setFilterSteps([]);
         await loadItemsForEntity(itemsCurrentPage, itemsQuery, 'all', []);
+        await loadStepsForEntity();
     }, [ selectedEntity ]);
-    
     
     return (
         <div className={`tracing-selector ${status ? "opened" : ""}`}>
