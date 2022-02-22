@@ -1,14 +1,18 @@
 .tracing-items-filter {
     display: flex;
+    flex-direction: column;
     margin-top: 10px;
 
     .tracing-steps-list {
-        width: 70%;
-        margin-left: 10px;
+        width: 100%;
+        margin: 5px 0;
     }
 
     .tracing-items__types {
+        display: flex;
+        justify-content: space-around;
         flex-grow: 1;
+        margin: 5px 0;
     }
 
     &.exclude {
