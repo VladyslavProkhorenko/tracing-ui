@@ -1,0 +1,18 @@
+.tracing-steps-list {
+    padding: 15px;
+    height: 200px;
+    overflow: auto;
+    border-radius: 3px;
+    background-color: #F2F3F5;
+
+    .tracing-step-item {
+        padding: 5px 0;
+        border-bottom: 1px solid #4E59693D;
+        cursor: pointer;
+        transition: color .5s ease-in-out;
+
+        &.active {
+            color: #165DFF;
+        }
+    }
+}

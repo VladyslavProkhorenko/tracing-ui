@@ -1,0 +1,40 @@
+.tracing-radio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    .tracing-radio__input {
+        display: none;
+    }
+
+    .tracing-radio__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 16px;
+        height: 16px;
+        margin-right: 5px;
+        border: 2px solid #4E5969;
+        border-radius: 50%;
+
+        &:before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background-color: transparent;
+            border-radius: 50%;
+            transform: scale(0);
+            transform-origin: center;
+            transition:
+                    background-color .3s ease-in-out,
+                    transform .3s ease-in-out;
+        }
+    }
+
+    .tracing-radio__input:checked + .tracing-radio__icon {
+        &:before {
+            transform: scale(1);
+            background-color: #4E5969;
+        }
+    }
+}
