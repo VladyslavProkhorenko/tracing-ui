@@ -12,7 +12,7 @@ const TracingUI = () => {
     const [ entities, setEntities ] = useState([]);
     const [ activeEntity, setActiveEntity ] = useState();
     const [ activeItem, setActiveItem ] = useState();
-    const [ selectorVisible, setSelectorVisibility ] = useState(true);
+    const [ selectorVisible, setSelectorVisibility ] = useState(false);
     const [ loading, setLoading ] = useState(false);
     const [ traceItem, setTraceItem ] = useState(null);
 
@@ -65,8 +65,6 @@ const TracingUI = () => {
     }
 
     const fetchDataFromQuery = async () => {
-        console.log('fetch data from query');
-
         if (await fetchEntityFromQuery()) {
             await fetchItemFromQuery();
         }
