@@ -1,24 +1,11 @@
 import React from 'react';
 import "./../styles/TracingTraceTimeline.scss";
-
-const padTo2Digits = (num) => {
-    return num.toString().padStart(2, '0');
-}
+import moment from "moment";
 
 const formatDate = (date) => {
-    return (
-        [
-            date.getFullYear(),
-            padTo2Digits(date.getMonth() + 1),
-            padTo2Digits(date.getDate()),
-        ].join('-') +
-        ' ' +
-        [
-            padTo2Digits(date.getHours()),
-            padTo2Digits(date.getMinutes()),
-            padTo2Digits(date.getSeconds()),
-        ].join(':')
-    );
+    if (!date) return "No date";
+
+    return moment(date).format("HH:mm:ss DD.MM.YYYY");
 }
 
 const TracingTraceTimeline = ({ steps }) => {
