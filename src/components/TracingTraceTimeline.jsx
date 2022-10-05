@@ -1,12 +1,6 @@
 import React from 'react';
 import "./../styles/TracingTraceTimeline.scss";
-import moment from "moment";
-
-const formatDate = (date) => {
-    if (!date) return "No date";
-
-    return moment(date).format("HH:mm:ss DD.MM.YYYY");
-}
+import { formatDate } from "../helpers";
 
 const TracingTraceTimeline = ({ steps }) => {
     return (

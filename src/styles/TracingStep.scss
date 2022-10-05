@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     margin: 10px 0;
     padding: 8px 16px;
     border-radius: 3px;
@@ -10,10 +11,19 @@
     transition:
             color .3s ease-in-out,
             background-color .3s ease-in-out;
-    
+
     &.active,
     &:hover {
         color: #fff;
         background-color: rgba(22, 93, 255, 0.8);
+    }
+
+    .tracing-step__name {
+        font-weight: bold;
+        font-size: 1.05rem;
+    }
+
+    .tracing-step__datetime {
+        font-size: .8rem;
     }
 }
