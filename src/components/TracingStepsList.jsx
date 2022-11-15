@@ -10,11 +10,11 @@ const TracingStepsList = ({ entitySteps, selectedSteps, onSelect }) => {
         <div className="tracing-steps-list">
             {
                 entitySteps.map( step =>
-                    <div className={`tracing-step-item ${isActiveStep(step.name) ? 'active' : ''}`}
-                         key={step.name}
-                         onClick={ () => onSelect(step.name) }
+                    <div className={`tracing-step-item ${isActiveStep(step) ? 'active' : ''}`}
+                         key={step}
+                         onClick={ () => onSelect(step) }
                     >
-                        { step.name }
+                        { step }
                     </div>
                 )
             }
