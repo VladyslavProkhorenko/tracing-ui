@@ -95,6 +95,19 @@ const TracingUI = () => {
         return item;
     }
 
+    const fetchDetailedItemsFromQuery = async (items) => {
+        
+        if (Array.isArray(items) && items.length) {
+            setActiveItem(items[0]);
+            const data = await TracingUIService.loadItemDetails(items[0].id);
+            setTraceItem(data);
+        } else {
+            setActiveItem(null);
+            setTraceItem(null);
+        }
+        
+    }
+
     useEffect( async() => {
         if (await TracingUIService.auth(window.location.host)) {
             updateServer(TracingUIService.server);
@@ -124,6 +137,7 @@ const TracingUI = () => {
                                      activeItem={activeItem}
                                      setActiveItem={loadActiveItem}
                                      entities={entities}
+                                     fetchDetailedItemsFromQuery={fetchDetailedItemsFromQuery}
                     />
                     <TracingContent loading={loading}
                                     traceItem={traceItem}

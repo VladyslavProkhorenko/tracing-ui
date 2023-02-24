@@ -35,12 +35,16 @@ const TracingUIService = {
             .then(({ data }) => data)
     },
 
-    async loadItemsForEntity(id, page = 1, query = null, filterType = null, filterSteps = null) {
-        const params = {
+    async loadItemsForEntity(id, page = 1, query = null, filterType = null, filterSteps = null, externalId = null) {
+        let params = {
             page,
             query: query && query.length ? query : null,
             filterType,
             filterSteps: filterSteps && filterSteps.length ? filterSteps.join(',') : null
+        }
+    
+        if (!!externalId) {
+            params = { ...params, externalId }
         }
 
         return await axios
