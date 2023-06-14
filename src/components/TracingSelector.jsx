@@ -9,11 +9,11 @@ import TracingQueryService from "../services/TracingQuery.service";
 import TracingItemsFilter from "./TracingItemsFilter";
 
 const TracingSelector = ({
-                             status, onHide,
-                             activeEntity, setActiveEntity,
-                             activeItem, setActiveItem,
-                             entities, fetchDetailedItemsFromQuery
-                         }) => {
+    status, onHide,
+    activeEntity, setActiveEntity,
+    activeItem, setActiveItem,
+    entities, fetchDetailedItemsFromQuery
+}) => {
 
     const [ selectedEntity, setSelectedEntity ] = useState(activeEntity);
     const [ selectingEntityItem, setSelectingEntityItem ] = useState(false);
@@ -58,15 +58,28 @@ const TracingSelector = ({
 
     const loadItemsForEntity = async (page, query, filterType, filterSteps, externalId) => {
         if (!selectedEntity) return;
-
-        const data = await TracingUIService.loadItemsForEntity(selectedEntity.id, page, query, filterType, filterSteps, externalId);
+      
+        if (selectedEntity.items && selectedEntity.items.length > 0) {
+          setItems(selectedEntity.items);
+          return selectedEntity.items;
+        }
+      
+        const data = await TracingUIService.loadItemsForEntity(
+          selectedEntity.id,
+          page,
+          query,
+          filterType,
+          filterSteps,
+          externalId
+        );
+        
         selectedEntity.items = data.items;
         setItems(data.items);
         setItemsPagesCount(data.lastPage);
-        
+      
         return selectedEntity.items;
-    }
-
+      };
+      
     const loadStepsForEntity = async () => {
         const steps = selectedEntity
             ? await TracingUIService.loadStepsForEntity(selectedEntity.id)
