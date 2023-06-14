@@ -40,7 +40,7 @@ const TracingUIService = {
             page,
             query: query && query.length ? query : null,
             filterType,
-            filterSteps: filterSteps && filterSteps.length ? filterSteps.join(',') : null
+            filterSteps: filterSteps && filterSteps.length ? filterSteps.join(",") : null
         }
 
         return await axios

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import TracingHeader from "./TracingHeader";
 import TracingContent from "./TracingContent";
 import "./../styles/TracingUI.scss";
@@ -71,7 +71,7 @@ const TracingUI = () => {
     }
 
     const fetchEntityFromQuery = async () => {
-        const entityKey = TracingQueryService.get('entity');
+        const entityKey = TracingQueryService.get("entity");
         if (!entityKey) return false;
 
         const entity = await TracingUIService.loadEntityDetails(entityKey);
@@ -83,7 +83,7 @@ const TracingUI = () => {
     }
 
     const fetchItemFromQuery = async () => {
-        const itemId = TracingQueryService.get('id');
+        const itemId = TracingQueryService.get("id");
         if (!itemId || !Number(itemId)) return false;
 
         const item = await TracingUIService.loadItemDetails(itemId);
@@ -112,21 +112,21 @@ const TracingUI = () => {
                 server &&
                 <>
                     <TracingHeader onSelectorToggle={toggleSelector}
-                                   activeEntity={activeEntity}
-                                   server={server}
-                                   onRefresh={refresh}
-                                   onServerChange={changeServer}
+                        activeEntity={activeEntity}
+                        server={server}
+                        onRefresh={refresh}
+                        onServerChange={changeServer}
                     />
                     <TracingSelector status={selectorVisible}
-                                     onHide={hideSelector}
-                                     activeEntity={activeEntity}
-                                     setActiveEntity={setActiveEntity}
-                                     activeItem={activeItem}
-                                     setActiveItem={loadActiveItem}
-                                     entities={entities}
+                        onHide={hideSelector}
+                        activeEntity={activeEntity}
+                        setActiveEntity={setActiveEntity}
+                        activeItem={activeItem}
+                        setActiveItem={loadActiveItem}
+                        entities={entities}
                     />
                     <TracingContent loading={loading}
-                                    traceItem={traceItem}
+                        traceItem={traceItem}
                     />
                     <div className="backdrop" onClick={hideSelector}/>
                 </>

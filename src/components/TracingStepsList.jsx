@@ -1,4 +1,4 @@
-import React  from 'react';
+import React  from "react";
 import "./../styles/TracingStepsList.scss";
 
 const TracingStepsList = ({ entitySteps, selectedSteps, onSelect }) => {
@@ -10,9 +10,9 @@ const TracingStepsList = ({ entitySteps, selectedSteps, onSelect }) => {
         <div className="tracing-steps-list">
             {
                 entitySteps.map( step =>
-                    <div className={`tracing-step-item ${isActiveStep(step) ? 'active' : ''}`}
-                         key={step}
-                         onClick={ () => onSelect(step) }
+                    <div className={`tracing-step-item ${isActiveStep(step) ? "active" : ""}`}
+                        key={step}
+                        onClick={ () => onSelect(step) }
                     >
                         { step }
                     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import TracingRefreshButton from "./TracingRefreshButton";
 import TracingName from "./TracingName";
 import "./../styles/TracingHeader.scss";
@@ -9,7 +9,7 @@ const TracingHeader = ({ server, activeEntity, onSelectorToggle, onRefresh, onSe
         <div className="tracing-header">
             <div className="tracing-header__controls">
                 <TracingButton className="tracing-header__toggle"
-                               onClick={onSelectorToggle}
+                    onClick={onSelectorToggle}
                 >
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 6.76471H15.5V11.5294H2V6.76471ZM15.1029 2H2.39706C2.17777 2 2 2.17777 2 2.39706V6.76471H15.5V2.39706C15.5 2.17777 15.3222 2 15.1029 2ZM2 11.5294H15.5V15.8971C15.5 16.1164 15.3222 16.2941 15.1029 16.2941H2.39706C2.17777 16.2941 2 16.1164 2 15.8971V11.5294Z" stroke="#4E5969" strokeWidth="1.3"/>

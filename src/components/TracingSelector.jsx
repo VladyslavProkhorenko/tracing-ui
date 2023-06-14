@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import TracingEntity from "./TracingEntity";
 import "./../styles/TracingSelector.scss"
 import TracingButton from "./TracingButton";
@@ -9,20 +9,20 @@ import TracingQueryService from "../services/TracingQuery.service";
 import TracingItemsFilter from "./TracingItemsFilter";
 
 const TracingSelector = ({
-                             status, onHide,
-                             activeEntity, setActiveEntity,
-                             activeItem, setActiveItem,
-                             entities
-                         }) => {
+    status, onHide,
+    activeEntity, setActiveEntity,
+    activeItem, setActiveItem,
+    entities
+}) => {
 
     const [ selectedEntity, setSelectedEntity ] = useState(activeEntity);
     const [ selectingEntityItem, setSelectingEntityItem ] = useState(false);
     const [ entitySteps, setEntitySteps ] = useState([]);
     const [ items, setItems ] = useState([]);
-    const [ itemsQuery, setItemsQuery ] = useState('');
+    const [ itemsQuery, setItemsQuery ] = useState("");
     const [ itemsPagesCount, setItemsPagesCount ] = useState(1);
     const [ itemsCurrentPage, setItemsCurrentPage ] = useState(1);
-    const [ filterType, setFilterType ] = useState('all');
+    const [ filterType, setFilterType ] = useState("all");
     const [ filterSteps, setFilterSteps ] = useState([]);
 
     const onEntitySelect = (entity) => {
@@ -31,17 +31,17 @@ const TracingSelector = ({
     }
 
     const onItemSelect = (item) => {
-        TracingQueryService.set('entity', selectedEntity.key);
-        TracingQueryService.set('id', item.id);
+        TracingQueryService.set("entity", selectedEntity.key);
+        TracingQueryService.set("id", item.id);
         setActiveEntity(selectedEntity);
         setActiveItem(item, selectedEntity);
         onHide();
     }
 
     const resetItems = async () => {
-        setItemsQuery('');
+        setItemsQuery("");
         setItemsCurrentPage(1);
-        await loadItemsForEntity(1, '', filterType, filterSteps);
+        await loadItemsForEntity(1, "", filterType, filterSteps);
     }
 
     const onPageChange = async (page) => {
@@ -73,7 +73,7 @@ const TracingSelector = ({
     }
 
     const filterItems = async (type, steps) => {
-        if (type === 'all') {
+        if (type === "all") {
             steps = [];
         }
 
@@ -89,9 +89,9 @@ const TracingSelector = ({
     }, [ activeEntity ])
 
     useEffect(async () => {
-        setFilterType('all');
+        setFilterType("all");
         setFilterSteps([]);
-        await loadItemsForEntity(itemsCurrentPage, itemsQuery, 'all', []);
+        await loadItemsForEntity(itemsCurrentPage, itemsQuery, "all", []);
         await loadStepsForEntity();
     }, [ selectedEntity ]);
     
@@ -108,20 +108,20 @@ const TracingSelector = ({
             </div>
             { !selectingEntityItem && entities.map(
                 entity => <TracingEntity entity={entity}
-                                         key={entity.id}
-                                         active={activeEntity && entity.id === activeEntity.id}
-                                         onSelect={onEntitySelect}
+                    key={entity.id}
+                    active={activeEntity && entity.id === activeEntity.id}
+                    onSelect={onEntitySelect}
                 />  
             ) }
             {
                 selectingEntityItem && selectedEntity &&
                 <>
                     <TracingSearchItems defaultQuery={itemsQuery}
-                                        onSearch={onSearch}
-                                        onReset={resetItems}
+                        onSearch={onSearch}
+                        onReset={resetItems}
                     />
                     <TracingItemsFilter entitySteps={entitySteps}
-                                        onFilter={filterItems}
+                        onFilter={filterItems}
                     />
                     {
                         Array.isArray(items) && items.length > 0 && <>
@@ -129,16 +129,16 @@ const TracingSelector = ({
                                 {
                                     items.map(
                                         item => <TracingEntity entity={item}
-                                                               key={item.id}
-                                                               active={activeItem && item.id === activeItem.id}
-                                                               onSelect={onItemSelect}
+                                            key={item.id}
+                                            active={activeItem && item.id === activeItem.id}
+                                            onSelect={onItemSelect}
                                         />
                                     )
                                 }
                             </div>
                             <TracingPagination pagesCount={itemsPagesCount}
-                                               currentPage={itemsCurrentPage}
-                                               onPageChange={onPageChange}
+                                currentPage={itemsCurrentPage}
+                                onPageChange={onPageChange}
                             />
                         </>
                     }

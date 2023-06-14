@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import TracingRadio from "./TracingRadio";
 import TracingStepsList from "./TracingStepsList";
 import "./../styles/TracingItemsFilter.scss";
 
 const TracingItemsFilter = ({ entitySteps, onFilter }) => {
-    const [ selectedType, setSelectedType ] = useState('all') ;
+    const [ selectedType, setSelectedType ] = useState("all") ;
     const [ selectedSteps, setSelectedSteps ] = useState([]) ;
     const filterTypes = [
         {
@@ -55,20 +55,20 @@ const TracingItemsFilter = ({ entitySteps, onFilter }) => {
                 {
                     filterTypes.map( type =>
                         <TracingRadio name="filter_type"
-                                      label={type.label}
-                                      value={type.value}
-                                      checked={type.value === selectedType}
-                                      key={type.value}
-                                      onChange={onTypeChange}
+                            label={type.label}
+                            value={type.value}
+                            checked={type.value === selectedType}
+                            key={type.value}
+                            onChange={onTypeChange}
                         />
                     )
                 }
             </div>
             {
-                selectedType !== 'all' &&
+                selectedType !== "all" &&
                 <TracingStepsList entitySteps={entitySteps}
-                                  selectedSteps={selectedSteps}
-                                  onSelect={onStepSelect}
+                    selectedSteps={selectedSteps}
+                    onSelect={onStepSelect}
                 />
             }
         </div>

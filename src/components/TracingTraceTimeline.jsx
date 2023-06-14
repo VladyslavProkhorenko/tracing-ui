@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import "./../styles/TracingTraceTimeline.scss";
 import { formatDate } from "../helpers";
 
@@ -8,7 +8,7 @@ const TracingTraceTimeline = ({ steps }) => {
             { steps.map(
                 step => (
                     <div className="trace-timeline__item"
-                         key={step.id}
+                        key={step.id}
                     >
                         <div className="trace-timeline__item__name">{ step.name }</div>
                         <div className="trace-timeline__item__dots" />

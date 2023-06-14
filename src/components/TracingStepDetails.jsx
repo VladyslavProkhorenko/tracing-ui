@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import "./../styles/TracingStepDetails.scss";
 
 const TracingStepDetails = ({ activeStep }) => {
@@ -13,12 +12,12 @@ const TracingStepDetails = ({ activeStep }) => {
                                 <pre>
                                     {JSON.stringify(activeStep.data,null,2)}
                                 </pre>
-                            :
+                                :
                                 <div className="tracing-step-details__empty">No data</div>
                         }
                     </>
                     :
-                <div className="tracing-step-details__empty">Select step</div>
+                    <div className="tracing-step-details__empty">Select step</div>
             }
         </div>
     );

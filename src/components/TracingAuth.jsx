@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import "./../styles/TracingAuth.scss";
 import TracingUIService from "../services/TracingUI.service";
 
 const TracingAuth = ({ updateServer }) => {
-    const [ server, setServer ] = useState('');
+    const [ server, setServer ] = useState("");
     const [ hasEmptyCredentials, setHasEmptyCredentials ] = useState(false);
     const [ isCredentialsValid, setIsCredentialsValid ] = useState(true);
     const [ loading, setLoading ] = useState(false);
@@ -41,15 +41,15 @@ const TracingAuth = ({ updateServer }) => {
             <div className="tracing-auth__form">
                 <div className="tracing-ui__logo">Tracing UI</div>
                 <input type="text"
-                       placeholder="Server"
-                       value={server}
-                       onChange={(e) => setServer(e.target.value)}
-                       onKeyPress={(e) => e.code === 'Enter' ? onSubmit() : null}
+                    placeholder="Server"
+                    value={server}
+                    onChange={(e) => setServer(e.target.value)}
+                    onKeyPress={(e) => e.code === "Enter" ? onSubmit() : null}
                 />
                 {!isCredentialsValid && <div className="tracing-ui__error">Server is invalid</div>}
                 {hasEmptyCredentials && <div className="tracing-ui__error">Fill server url to login</div>}
                 <button disabled={loading || hasEmptyCredentials}
-                        onClick={onSubmit}
+                    onClick={onSubmit}
                 >{ loading ? "Loading..." : "Login"}</button>
             </div>
         </div>

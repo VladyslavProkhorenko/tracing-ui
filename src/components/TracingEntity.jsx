@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import "./../styles/TracingEntity.scss"
 
 const TracingEntity = ({ entity, active, onSelect }) => {
     return (
         <div className={`tracing-entity ${active ? "active" : ""}`}
-             onClick={() => onSelect(entity)}
+            onClick={() => onSelect(entity)}
         >{ entity.name }</div>
     );
 };

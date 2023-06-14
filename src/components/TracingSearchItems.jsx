@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from "react";
 import "./../styles/TracingSearchItems.scss";
 
 const TracingSearchItems = ({ onReset, onSearch, defaultQuery }) => {
@@ -27,9 +27,9 @@ const TracingSearchItems = ({ onReset, onSearch, defaultQuery }) => {
     return (
         <div className="tracing-search-items">
             <input type="text"
-                   placeholder="Input to search..."
-                   value={query}
-                   onInput={onInput}
+                placeholder="Input to search..."
+                value={query}
+                onInput={onInput}
             />
         </div>
     );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import "./../styles/TracingTree.scss";
 import TracingStep from "./TracingStep";
 import TracingStepConnector from "./TracingStepConnector";
@@ -12,8 +12,8 @@ const TracingTree = ({ traceItem, activeStep, setActiveStep }) => {
                     traceItem.steps.map(
                         (step, index) => <div key={step.id}>
                             <TracingStep step={step}
-                                         active={activeStep && activeStep.id === step.id}
-                                         onSelect={setActiveStep}/>
+                                active={activeStep && activeStep.id === step.id}
+                                onSelect={setActiveStep}/>
                             { index !== traceItem.steps.length - 1 && <TracingStepConnector/> }
                         </div>
                     )

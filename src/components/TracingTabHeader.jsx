@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import "./../styles/TracingTabHeader.scss"
 
 const TracingTabHeader = ({ name, active, onSelect }) => {
     return (
         <div className={`tracing-tab-header ${active ? "active" : ""}`}
-             onClick={onSelect}
+            onClick={onSelect}
         >
             { name }
         </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import "./../styles/TracingPagination.scss";
 
 const TracingPagination = ({ pagesCount, currentPage, onPageChange }) => {
@@ -36,16 +36,16 @@ const TracingPagination = ({ pagesCount, currentPage, onPageChange }) => {
                         currentPage !== 1 &&
                         <>
                             <div className="tracing-pagination__anchor"
-                                 onClick={ () => onPageChange(1) }
+                                onClick={ () => onPageChange(1) }
                             >First</div>
                         </>
                     }
                     {
                         pages.map(
                             (page) =>
-                                <div className={`tracing-pagination__page ${page === currentPage ? 'current' : ''}`}
-                                     key={page}
-                                     onClick={ () => onPageChange(page) }
+                                <div className={`tracing-pagination__page ${page === currentPage ? "current" : ""}`}
+                                    key={page}
+                                    onClick={ () => onPageChange(page) }
                                 >{ page }</div>
                         )
                     }
@@ -53,7 +53,7 @@ const TracingPagination = ({ pagesCount, currentPage, onPageChange }) => {
                         currentPage !== pagesCount &&
                         <>
                             <div className="tracing-pagination__anchor"
-                                 onClick={ () => onPageChange(pagesCount) }
+                                onClick={ () => onPageChange(pagesCount) }
                             >Last</div>
                         </>
                     }

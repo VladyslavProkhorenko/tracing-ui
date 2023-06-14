@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import TracingTree from "./TracingTree";
 import TracingDetails from "./TracingDetails";
 import "./../styles/TracingContent.scss";
@@ -18,13 +18,13 @@ const TracingContent = ({ loading, traceItem }) => {
                 !loading && <>
                     {
                         traceItem && <>
-                        <TracingTree traceItem={traceItem}
-                                     activeStep={activeStep}
-                                     setActiveStep={setActiveStep}
-                        />
-                        <TracingDetails steps={traceItem.steps}
-                                        activeStep={activeStep}
-                        />
+                            <TracingTree traceItem={traceItem}
+                                activeStep={activeStep}
+                                setActiveStep={setActiveStep}
+                            />
+                            <TracingDetails steps={traceItem.steps}
+                                activeStep={activeStep}
+                            />
                         </>
                     }
                     {
