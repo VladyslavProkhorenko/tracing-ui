@@ -24,7 +24,7 @@ const TracingUI = () => {
     const loadActiveItem = async (item, selectedEntity) => {
         if (
             !selectedEntity || !Array.isArray(selectedEntity.items) ||
-            !selectedEntity.items.find( child => child.id === item.id)
+            !selectedEntity.items.find( child => child.key === item.key)
         ) {
             setActiveItem(null);
             setTraceItem(null);
@@ -32,7 +32,7 @@ const TracingUI = () => {
         }
 
         setActiveItem(item);
-        const data = await TracingUIService.loadItemDetails(item.id)
+        const data = await TracingUIService.loadItemDetails(item.key)
         setTraceItem(data);
     }
 
@@ -83,10 +83,10 @@ const TracingUI = () => {
     }
 
     const fetchItemFromQuery = async () => {
-        const itemId = TracingQueryService.get('id');
-        if (!itemId || !Number(itemId)) return false;
+        const itemKey = TracingQueryService.get('key');
+        if (!itemKey) return false;
 
-        const item = await TracingUIService.loadItemDetails(itemId);
+        const item = await TracingUIService.loadItemDetails(itemKey);
         if (!item) return false;
 
         setActiveItem(item);
