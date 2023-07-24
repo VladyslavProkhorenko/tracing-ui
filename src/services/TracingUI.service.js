@@ -56,9 +56,10 @@ const TracingUIService = {
             .then(({ data }) => data)
     },
 
-    async loadItemDetails(id) {
+    async loadItemDetails(key) {
+        key = encodeURIComponent(key);
         return await axios
-            .get(`${this.server}/tracing/item/${id}`)
+            .get(`${this.server}/tracing/item/${key}`)
             .then(({ data }) => data)
     }
 }

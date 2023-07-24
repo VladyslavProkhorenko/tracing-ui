@@ -32,7 +32,7 @@ const TracingSelector = ({
 
     const onItemSelect = (item) => {
         TracingQueryService.set('entity', selectedEntity.key);
-        TracingQueryService.set('id', item.id);
+        TracingQueryService.set('key', item.key);
         setActiveEntity(selectedEntity);
         setActiveItem(item, selectedEntity);
         onHide();
@@ -129,8 +129,8 @@ const TracingSelector = ({
                                 {
                                     items.map(
                                         item => <TracingEntity entity={item}
-                                                               key={item.id}
-                                                               active={activeItem && item.id === activeItem.id}
+                                                               key={item.key}
+                                                               active={activeItem && item.key === activeItem.key}
                                                                onSelect={onItemSelect}
                                         />
                                     )
